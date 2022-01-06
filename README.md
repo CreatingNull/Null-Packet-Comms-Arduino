@@ -17,7 +17,8 @@ Packaged releases of the library can be obtained as zip files from the repositor
 ### Source Structure
 
 The source code is written in C++ and contained within the `src/` subdir.
-Most of the code is formatted to clang specifications, however this is automated via the [pre-commit](https://github.com/CreatingNull/UOS-Interface/actions/workflows/run-pre-commit.yml) framework, see repo [hooks](.pre-commit-config.yaml).
+Most of the code is formatted to clang specifications, however this is automated via the [pre-commit](https://github.com/pre-commit/pre-commit) framework, see repo [hooks](.pre-commit-config.yaml).
+The hook's `LLVM` and `cppcheck` dependencies should be installed for the OS, as well as those defined in [development-requirements](resources/development-requirements.txt) to correctly execute the pre-commit tasks.
 
 The pre-commit action is currently automated by GitHub actions CI, to verify against pushes and pull-requests.
 
@@ -31,5 +32,4 @@ I just do this stuff for fun in my spare time, but feel free to:
 
 ## License
 
-The source of this repo uses the MIT open-source license, for details on the current licensing see LICENSE.md or click the badge above. 
-*   Copyright 2022 © <a href="https://nulltek.xyz" target="_blank">NullTek</a>.
+The source of this repo uses the MIT open-source license, for details on the current licensing see [LICENSE](LICENSE.md) or click the badge above.

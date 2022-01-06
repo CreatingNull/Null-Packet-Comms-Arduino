@@ -1,24 +1,47 @@
+/*
+ *	Null Packet Comms Arduino Library
+ *
+ *	Copyright © 2022 Steve Richardson (Creating Null)
+ *	See LICENSE.md
+ *	<https://github.com/CreatingNull/Null-Packet-Comms-Arduino/>
+ *
+ *	A library for wrapping the arduino UART serial
+ *	in a binary packet based communication protocol.
+ *	See <https://wiki.nulltek.xyz/protocols/npc/>
+ */
+
 #include "NullPacketComms.h"
 
 #include <Arduino.h>
 
-NullPacketComms::NullPacketComms() {}
+NullPacketComms::NullPacketComms() {
+  packet_target_address = 0;
+  packet_payload_len = 0;
+}
 
-bool NullPacketComms::init_port(unsigned long baud_rate, uint8_t buffer_size) {
+bool NullPacketComms::init_port(uint32_t baud_rate, uint8_t buffer_size) {
   packet_payload[buffer_size - 6];
   packet[buffer_size];
   packet_tx[buffer_size];
   switch (baud_rate) {
     case 115200:
-      Serial.begin(baud_rate);
-      break;
+    case 57600:
+    case 38400:
+    case 31250:
+    case 28800:
+    case 19200:
+    case 14400:
     case 9600:
+    case 4800:
+    case 2400:
+    case 1200:
+    case 600:
+    case 300:
       Serial.begin(baud_rate);
-      break;
-    default:
+      return true;
+    default:  // Unsupported / atypical baud-rate
       return false;
   }
-  return true;
 }
 
 bool NullPacketComms::close_port() {
@@ -32,7 +55,6 @@ bool NullPacketComms::read_packet() {
   byte LRC = 0;
   bool complete = false;
   bool checksum_match = false;
-  debug_probe = 128;
   while (Serial.available() > 0) {
     byte incoming = Serial.read();
     if (packet_length == 0) {  // header
@@ -82,7 +104,7 @@ bool NullPacketComms::read_packet() {
   return complete && checksum_match;
 }
 
-int NullPacketComms::flush_rx_buffer() {
+uint8_t NullPacketComms::flush_rx_buffer() {
   int c = 0;
   while (Serial.available() > 0) {
     Serial.read();
@@ -100,10 +122,11 @@ bool NullPacketComms::process_packet(uint8_t packet_len) {
   return true;
 }
 
-int NullPacketComms::generate_packet_data(byte payload[], uint8_t payload_len,
-                                          uint8_t remote_address,
-                                          uint8_t local_address,
-                                          byte packet_tx[]) {
+uint8_t NullPacketComms::generate_packet_data(const byte payload[],
+                                              uint8_t payload_len,
+                                              uint8_t remote_address,
+                                              uint8_t local_address,
+                                              byte packet_tx[]) {
   int byte_count = 0;
   byte LRC = 0;
   packet_tx[byte_count] = '>';

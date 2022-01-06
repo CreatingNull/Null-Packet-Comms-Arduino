@@ -1,0 +1,22 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-added-large-files
+    -   id: fix-byte-order-marker
+    -   id: check-docstring-first
+    -   id: mixed-line-ending
+    -   id: check-case-conflict
+    -   id: requirements-txt-fixer
+-   repo: https://github.com/pocc/pre-commit-hooks
+    rev: v1.3.5
+    hooks:
+    -   id: clang-format
+        args: [-i, --style=Google]
+    -   id: cpplint
+        args: [--root=src/NullPacketComms/]
+    -   id: cppcheck
+        args: [--language=c++]
