@@ -12,19 +12,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - run: |
+      - name: Localise artifacts
+        run: |
           cp README.md src/NullPacketComms/
           cp LICENSE.md src/NullPacketComms/
           cp keywords.txt src/NullPacketComms/
           cp library.properties src/NullPacketComms/
 
-      - uses: edgarrc/action-7z@v1.0.5
+      - name: Create zip of artifacts
+        uses: edgarrc/action-7z@v1.0.5
         with:
           args: 7z a -y -tzip -mx9 NullPacketComms.zip ./src/NullPacketComms/
 
-      - uses: actions/upload-artifact@v2
+      - name: Upload the Build
+        uses: actions/upload-artifact@v2
         with:
           name: null-packet-comms-artifacts
           path: NullPacketComms.zip
+
+      - name: Build Changelog
+        uses: mikepenz/release-changelog-builder-action@v2.7.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
