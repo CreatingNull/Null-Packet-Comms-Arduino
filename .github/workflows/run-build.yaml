@@ -32,8 +32,3 @@ jobs:
         with:
           name: null-packet-comms-artifacts
           path: NullPacketComms.zip
-
-      - name: Build Changelog
-        uses: mikepenz/release-changelog-builder-action@v2.7.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
