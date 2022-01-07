@@ -1,3 +1,26 @@
-NullPacketComms KEYWORD1
-get_buffer_size() KEYWORD2
-read_packet() KEYWORD2
+#######################################
+# Syntax Coloring For NullPacketComms
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+NullPacketComms	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+init_port	KEYWORD2
+read_packet	KEYWORD2
+process_packet	KEYWORD2
+flush_rx_buffer	KEYWORD2
+close_port	KEYWORD2
+return_ack	KEYWORD2
+generate_packet_data	KEYWORD2
+send_packet	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
