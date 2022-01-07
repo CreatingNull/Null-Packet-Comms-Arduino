@@ -1,0 +1,26 @@
+name: pre-commit
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+
+  pre-commit:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: KyleMayes/install-llvm-action@v1.5.0
+
+    - uses: actions/setup-python@v2
+
+    - run: |
+        pip install --upgrade pip wheel cpplint
+        sudo apt-get update -y
+        sudo apt-get install -y cppcheck
+
+    - uses: pre-commit/action@v2.0.3
