@@ -109,7 +109,7 @@ bool NullPacketComms::read_packet() {
 
 uint8_t NullPacketComms::flush_rx_buffer() {
   unit8_t c = 0;
-  while (Serial.read() > 0) {  // Consume waiting bytes
+  while (Serial.read() >= 0) {  // Consume waiting bytes
     c++;
   }
   return c;
