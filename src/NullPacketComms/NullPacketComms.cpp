@@ -57,6 +57,9 @@ bool NullPacketComms::read_packet() {
   bool checksum_match = false;
   while (Serial.available() > 0) {
     byte incoming = Serial.read();
+    if (incoming < 0) {
+      continue;  // Bad read or data not actually available.
+    }
     if (packet_length == 0) {  // header
       if (incoming == '>') {
         packet[packet_length] = incoming;
@@ -105,9 +108,8 @@ bool NullPacketComms::read_packet() {
 }
 
 uint8_t NullPacketComms::flush_rx_buffer() {
-  int c = 0;
-  while (Serial.available() > 0) {
-    Serial.read();
+  unit8_t c = 0;
+  while (Serial.read() > 0) {  // Consume waiting bytes
     c++;
   }
   return c;
