@@ -1,4 +1,4 @@
-# ![NullTek Documentation](resources/NullTekDocumentationLogo.png) Arduino Null Packet Comms
+# ![NullTek Documentation](https://raw.githubusercontent.com/CreatingNull/NullTek-Assets/main/img/logo/NullTekDocumentationLogo.png) Arduino Null Packet Comms
 
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE.md)
 [![Codacy grade](https://img.shields.io/codacy/grade/ec4a482e4a4f4fbdb0ddb0a268916f23?logo=codacy&style=flat-square)](https://app.codacy.com/gh/CreatingNull/Null-Packet-Comms-Arduino/dashboard?branch=master)
