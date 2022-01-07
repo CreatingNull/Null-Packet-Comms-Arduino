@@ -19,11 +19,10 @@ jobs:
           cp LICENSE.md src/NullPacketComms/
           cp keywords.txt src/NullPacketComms/
           cp library.properties src/NullPacketComms/
-          cd src/
 
       - uses: edgarrc/action-7z@v1.0.5
         with:
-          args: 7z a -y -tzip -mx9 NullPacketComms.zip NullPacketComms/
+          args: 7z a -y -tzip -mx9 NullPacketComms.zip ./src/NullPacketComms/
 
       - uses: actions/upload-artifact@v2
         with:
