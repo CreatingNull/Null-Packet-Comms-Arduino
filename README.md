@@ -1,6 +1,8 @@
 # ![NullTek Documentation](resources/NullTekDocumentationLogo.png) Arduino Null Packet Comms
 
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE.md)
+[![Codacy grade](https://img.shields.io/codacy/grade/ec4a482e4a4f4fbdb0ddb0a268916f23?logo=codacy&style=flat-square)](https://app.codacy.com/gh/CreatingNull/Null-Packet-Comms-Arduino/dashboard?branch=master)
+[![Pre-commit](https://img.shields.io/:pre--commit-enabled-green.svg?logo=pre-commit&style=flat-square)](https://github.com/pre-commit/pre-commit)
 
 This is an arduino library that implements a binary packet-based communication protocol on top of the arduino Serial library.
 This wrapper allows for robust generic data transfer between systems, it is heavily relied on for the [Arduino UOS](https://github.com/CreatingNull/UOS-Arduino) implementation.
