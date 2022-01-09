@@ -52,11 +52,11 @@ bool NullPacketComms::close_port() {
 bool NullPacketComms::read_packet() {
   int packet_length = 0;
   int read_delay = 10;
-  byte LRC = 0;
+  uint8_t LRC = 0;
   bool complete = false;
   bool checksum_match = false;
   while (Serial.available() > 0) {
-    byte incoming = Serial.read();
+    uint8_t incoming = Serial.read();
     if (incoming < 0) {
       continue;  // Bad read or data not actually available.
     }
@@ -124,13 +124,13 @@ bool NullPacketComms::process_packet(uint8_t packet_len) {
   return true;
 }
 
-uint8_t NullPacketComms::generate_packet_data(const byte payload[],
+uint8_t NullPacketComms::generate_packet_data(const uint8_t payload[],
                                               uint8_t payload_len,
                                               uint8_t remote_address,
                                               uint8_t local_address,
-                                              byte packet_tx[]) {
+                                              uint8_t packet_tx[]) {
   int byte_count = 0;
-  byte LRC = 0;
+  uint8_t LRC = 0;
   packet_tx[byte_count] = '>';
   byte_count++;  // start packet
   packet_tx[byte_count] = remote_address;
@@ -158,13 +158,13 @@ uint8_t NullPacketComms::generate_packet_data(const byte payload[],
 
 bool NullPacketComms::return_ack(uint8_t error_code, uint8_t remote_address,
                                  uint8_t local_address) {
-  byte data[1] = {error_code};
+  uint8_t data[1] = {error_code};
   uint8_t byte_len =
       generate_packet_data(data, 1, remote_address, local_address, packet_tx);
   return send_packet(packet_tx, byte_len);
 }
 
-bool NullPacketComms::send_packet(byte packet_tx[], uint8_t packet_len) {
+bool NullPacketComms::send_packet(uint8_t packet_tx[], uint8_t packet_len) {
   uint8_t count_bytes = 0;
   for (int i = 0; i < packet_len; i++) {
     count_bytes += Serial.write(packet_tx[i]);
