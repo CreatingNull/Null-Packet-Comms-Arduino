@@ -9,6 +9,11 @@ logs/
 dist/
 build/
 bin/
+*.o
+NPCTestSuite
+
+# Ignore the test runner
+googletest/
 
 # PyCharm Projects
 .idea/
