@@ -12,11 +12,12 @@
 
 #include "NullPacketComms.h"
 
-#include <Arduino.h>
-
 NullPacketComms::NullPacketComms() {
   packet_target_address = 0;
   packet_payload_len = 0;
+  packet_tx = memset(packet_tx, 0, sizeof(packet_tx));
+  packet_payload = memset(packet_payload, 0, sizeof(packet_payload));
+  packet = memset(packet, 0, sizeof(packet));
 }
 
 bool NullPacketComms::init_port(uint32_t baud_rate, uint8_t buffer_size) {
@@ -56,7 +57,7 @@ bool NullPacketComms::read_packet() {
   bool complete = false;
   bool checksum_match = false;
   while (Serial.available() > 0) {
-    uint8_t incoming = Serial.read();
+    int incoming = Serial.read();
     if (incoming < 0) {
       continue;  // Bad read or data not actually available.
     }
@@ -129,7 +130,7 @@ uint8_t NullPacketComms::generate_packet_data(const uint8_t payload[],
                                               uint8_t remote_address,
                                               uint8_t local_address,
                                               uint8_t packet_tx[]) {
-  int byte_count = 0;
+  uint8_t byte_count = 0;
   uint8_t LRC = 0;
   packet_tx[byte_count] = '>';
   byte_count++;  // start packet
