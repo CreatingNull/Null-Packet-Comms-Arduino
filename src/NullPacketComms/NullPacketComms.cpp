@@ -15,9 +15,9 @@
 NullPacketComms::NullPacketComms() {
   packet_target_address = 0;
   packet_payload_len = 0;
-  packet_tx = memset(packet_tx, 0, sizeof(packet_tx));
-  packet_payload = memset(packet_payload, 0, sizeof(packet_payload));
-  packet = memset(packet, 0, sizeof(packet));
+  memset(packet_tx, 0, sizeof(packet_tx));
+  memset(packet_payload, 0, sizeof(packet_payload));
+  memset(packet, 0, sizeof(packet));
 }
 
 bool NullPacketComms::init_port(uint32_t baud_rate, uint8_t buffer_size) {
