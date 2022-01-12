@@ -24,11 +24,12 @@ jobs:
           cd googletest/
           cmake CMakeCache.txt
           make
+          echo "CPLUS_INCLUDE_PATH=${PWD}/googletest/include/" >> $GITHUB_ENV
+          echo "LIBRARY_PATH=${PWD}/googletest/" >> $GITHUB_ENV
 
       - name: Build and Execute Tests
         run: |
           cp -r src/NullPacketComms/ tests/NullPacketComms/
           cd tests/
-          source env.sh
           make
           ./NullPacketComms/NullPacketComms
