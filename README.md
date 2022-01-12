@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE.md)
 [![Codacy grade](https://img.shields.io/codacy/grade/ec4a482e4a4f4fbdb0ddb0a268916f23?logo=codacy&style=flat-square)](https://app.codacy.com/gh/CreatingNull/Null-Packet-Comms-Arduino/dashboard?branch=master)
 [![Pre-commit](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/pre-commit?logo=pre-commit&style=flat-square&label=code%20format)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-pre-commit.yaml)
+[![Test](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/test?logo=github&style=flat-square&label=Tests)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-test.yaml)
 [![Build](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/build?logo=github&style=flat-square&label=build)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-build.yaml)
 
 This is an arduino library that implements a binary packet-based communication protocol on top of the arduino Serial library.

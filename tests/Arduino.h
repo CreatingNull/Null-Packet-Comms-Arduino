@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define uint8_t u_int8_t
 #define uint16_t u_int16_t

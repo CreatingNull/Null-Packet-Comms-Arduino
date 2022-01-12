@@ -1,4 +1,4 @@
-NAME = NullPacketComms
+NAME = NullPacketComms/NullPacketComms
 
 LIBS = -lgtest_main -lgtest -lpthread
 

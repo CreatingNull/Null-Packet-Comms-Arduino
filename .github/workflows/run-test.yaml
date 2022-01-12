@@ -1,4 +1,4 @@
-name: Test
+name: test
 
 on:
 
@@ -24,3 +24,11 @@ jobs:
           cd googletest/
           cmake CMakeCache.txt
           make
+
+      - name: Build and Execute Tests
+        run: |
+          cp -r src/NullPacketComms/ tests/NullPacketComms/
+          cd tests/
+          source env.sh
+          make
+          ./NullPacketComms/NullPacketComms
