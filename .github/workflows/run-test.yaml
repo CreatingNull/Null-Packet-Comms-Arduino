@@ -1,0 +1,26 @@
+name: Test
+
+on:
+
+  push:
+    branches: [master]
+
+  jobs:
+
+    build:
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Get CMake
+          uses: lukka/get-cmake@v3.21.2
+
+        - name: Install Google Test Framework
+          run: |
+            git clone --depth 1 --branch release-1.11.0 https://github.com/google/googletest
+            cd googletest/
+            cmake CMakeCache.txt
+            make
