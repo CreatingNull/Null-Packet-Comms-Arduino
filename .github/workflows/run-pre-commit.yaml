@@ -12,17 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-    - uses: KyleMayes/install-llvm-action@v1.5.0
+    - name: Install LLVM Toolchain
+      uses: KyleMayes/install-llvm-action@v1.5.0
       with:
         version: "13.0"
 
-    - uses: actions/setup-python@v2
+    - name: Install Python
+      uses: actions/setup-python@v2
 
-    - run: |
+    - name: Install System Dependancies
+      run: |
         pip install --upgrade pip wheel cpplint
         sudo apt-get update -y
         sudo apt-get install -y cppcheck
 
-    - uses: pre-commit/action@v2.0.3
+    - name: Run Pre-Commit
+      uses: pre-commit/action@v2.0.3
