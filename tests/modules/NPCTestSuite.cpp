@@ -11,7 +11,7 @@
 
 #include <gtest/gtest.h>
 
-#include "NullPacketComms.h"
+#include "../NullPacketComms/NullPacketComms.h"
 
 namespace {
 

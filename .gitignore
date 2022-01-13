@@ -15,6 +15,9 @@ NPCTestSuite
 # Ignore the test runner
 googletest/
 
+# Ignore the localised source when testing
+tests/NullPacketComms
+
 # PyCharm Projects
 .idea/
 
