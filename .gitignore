@@ -12,6 +12,10 @@ bin/
 *.o
 NPCTestSuite
 
+# Ignore doxygen built files
+/docs/doxygen/html/
+/docs/doxygen/xml/
+
 # Ignore the test runner
 googletest/
 

@@ -15,10 +15,18 @@
 
 #include <Arduino.h>
 
+/*!
+        Serial connection object to handled via NPC protocol.
+*/
 class NullPacketComms {
  public:
   NullPacketComms();
   uint8_t packet_tx[32];
+  /*! Open a connection to the serial object.
+
+        \param baud_rate Integer setting the standard Arduino UART baud rate to
+     use.
+  */
   bool init_port(uint32_t baud_rate, uint8_t buffer_size);
   bool read_packet();
   bool process_packet(uint8_t packet_len);

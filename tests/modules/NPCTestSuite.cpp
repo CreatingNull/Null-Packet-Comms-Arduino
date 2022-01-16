@@ -6,7 +6,7 @@
  *	<https://github.com/CreatingNull/Null-Packet-Comms-Arduino/>
  *
  *	Test Module for coverage of NullPacketComms functions using mocked
- *arduino.
+ *  arduino.
  */
 
 #include <gtest/gtest.h>
