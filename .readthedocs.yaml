@@ -9,5 +9,10 @@ version: 2
 sphinx:
    configuration: docs/source/conf.py
 
-# Optionally build your docs in additional formats such as PDF
+# Build additional formats such as PDF
 formats: all
+
+# Install the additional requirements for sphinx extensions
+python:
+   install:
+      - requirements: docs/requirements.txt
