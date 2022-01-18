@@ -1,17 +1,18 @@
-NAME = NullPacketComms/NullPacketComms
+NAME = ../src/NullPacketComms/NullPacketComms
 
 LIBS = -lgtest_main -lgtest -lpthread
 
-TEST = ./modules/NPCTestSuite
-
+ClassTests = ./modules/ClassTests
+ReadPacketTests = ./modules/ReadPacketTests
+WritePacketTests = ./modules/WritePacketTests
 
 debug: all
 
 run-debug:
 	./${NAME}
 
-all: $(NAME).o $(TEST).o Arduino.o
-	c++ -lstdc++ $(LIBS) -o $(NAME) $(TEST).o $(NAME).o Arduino.o
+all: $(NAME).o $(ClassTests).o $(ReadPacketTests).o $(WritePacketTests).o Arduino.o
+	c++ -lstdc++ $(LIBS) -o $(NAME) $(ClassTests).o $(ReadPacketTests).o $(WritePacketTests).o $(NAME).o Arduino.o
 
 compile: $(NAME).o
 

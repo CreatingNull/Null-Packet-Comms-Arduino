@@ -13,17 +13,12 @@
 #include "NullPacketComms.h"
 
 NullPacketComms::NullPacketComms() {
-  packet_target_address = 0;
-  packet_payload_len = 0;
-  memset(packet_tx, 0, sizeof(packet_tx));
-  memset(packet_payload, 0, sizeof(packet_payload));
-  memset(packet, 0, sizeof(packet));
+  target_ = 0;
+  len_ = 0;
+  memset(payload_, 0, sizeof(payload_));
 }
 
-bool NullPacketComms::init_port(uint32_t baud_rate, uint8_t buffer_size) {
-  packet_payload[buffer_size - 6];
-  packet[buffer_size];
-  packet_tx[buffer_size];
+bool NullPacketComms::begin(uint32_t baud_rate) {
   switch (baud_rate) {
     case 115200:
     case 57600:
@@ -45,134 +40,88 @@ bool NullPacketComms::init_port(uint32_t baud_rate, uint8_t buffer_size) {
   }
 }
 
-bool NullPacketComms::close_port() {
-  Serial.end();
-  return true;
-}
+void NullPacketComms::end() { Serial.end(); }
 
-bool NullPacketComms::read_packet() {
-  int packet_length = 0;
-  int read_delay = 10;
-  uint8_t LRC = 0;
-  bool complete = false;
-  bool checksum_match = false;
+int NullPacketComms::available() { return Serial.available(); }
+
+bool NullPacketComms::readPacket(bool manual_ack) {
+  if (Serial.available() < 1) return false;  // No pending data.
+  this->clean();                             // Clears last processed packet.
+  uint8_t lrc = 0;     // For calculating LRC to check against the packet.
+  uint8_t cursor = 0;  // For tracking the position in the packet.
+  bool lrc_match = false;
+  bool end_token = false;
   while (Serial.available() > 0) {
-    int incoming = Serial.read();
-    if (incoming < 0) {
-      continue;  // Bad read or data not actually available.
+    uint8_t inward = Serial.read() & 0xff;  // No byte case is a non-issue.
+    if (cursor == 0) {                      // Start packet symbol.
+      if (inward != '>') continue;          // Packet not in sync.
+    } else if (cursor <= 2) {               // To, from, and length.
+      lrc = (lrc + inward) & 0xff;
+      if (cursor == 1) target_ = inward;
+    } else if (cursor == 3) {
+      len_ = inward;  // Set the pending packet length.
+      lrc = (lrc + inward) & 0xff;
+    } else if (cursor >= 4 && cursor <= 3 + len_) {  // Payload.
+      payload_[cursor - 4] = inward;
+      lrc = (lrc + inward) & 0xff;
+    } else if (cursor == 4 + len_) {  // Checksum.
+      lrc = ((lrc ^ 0xff) + 1) & 0xff;
+      lrc_match = lrc == inward;
+    } else if (cursor == 5 + len_) {  // End packet symbol.
+      if (inward == '<') end_token = true;
+      break;
     }
-    if (packet_length == 0) {  // header
-      if (incoming == '>') {
-        packet[packet_length] = incoming;
-        LRC = 0;
-        packet_length++;
-      }
-    } else if (packet_length >= 1 &&
-               packet_length <= 3) {  // to address, from address length
-      packet[packet_length] = incoming;
-      LRC = (LRC + incoming) & 0xff;
-      packet_length++;
-    } else if (packet_length >= 4 &&
-               packet_length <= 3 + packet[3]) {  // payload
-      packet[packet_length] = incoming;
-      LRC = (LRC + incoming) & 0xff;
-      packet_length++;
-    } else if (packet_length == 4 + packet[3]) {  // checksum
-      packet[packet_length] = incoming;
-      packet_length++;
-      LRC = ((LRC ^ 0xff) + 1) & 0xff;
-      if (LRC == packet[packet_length - 1]) {
-        checksum_match = true;
-      }
-    } else if (packet_length = 5 + packet[3]) {  // footer
-      if (incoming == '<') {
-        packet[packet_length] = incoming;
-        packet_length++;
-        complete = true;
-      }
-    }
-    if (!complete &&
-        Serial.available() ==
-            0) {  // if the next byte hasn't arrived yet, delay based on baud
-      for (int i = 0; i < read_delay; i++) {
-        if (Serial.available() > 0) {
-          break;
-        }
-        delay(1);
-      }
-    }
+    cursor++;  // Valid byte added to the packet
   }
-  if (complete && checksum_match) {
-    process_packet(packet_length);
+  if (cursor == 0) {
+    writeAck(1, 2);  // Start symbol not found
+    return false;    // Couldn't sync with a packet, don't ack
   }
-  return complete && checksum_match;
-}
-
-uint8_t NullPacketComms::flush_rx_buffer() {
-  uint8_t c = 0;
-  while (Serial.read() >= 0) {  // Consume waiting bytes
-    c++;
+  if (cursor < 5) {
+    writeAck(1, 3);  // Malformed packet
+    return false;
   }
-  return c;
-}
-
-bool NullPacketComms::process_packet(uint8_t packet_len) {
-  packet_target_address = packet[1];
-  packet_payload_len = packet[3];
-  for (int i = 0; i < packet_payload_len; i++) {
-    packet_payload[i] = packet[i + 4];
+  if (!lrc_match) {
+    writeAck(target_, 4);  // Checksum mismatch.
+    return false;
+  }
+  if (!end_token) {
+    writeAck(target_, 5);  // End packet symbol not found.
+    return false;
+  }
+  if (!manual_ack) {
+    writeAck(target_, 0);  // Successful read, when auto-ack.
   }
   return true;
 }
 
-uint8_t NullPacketComms::generate_packet_data(const uint8_t payload[],
-                                              uint8_t payload_len,
-                                              uint8_t remote_address,
-                                              uint8_t local_address,
-                                              uint8_t packet_tx[]) {
-  uint8_t byte_count = 0;
-  uint8_t LRC = 0;
-  packet_tx[byte_count] = '>';
-  byte_count++;  // start packet
-  packet_tx[byte_count] = remote_address;
-  LRC = (LRC + packet_tx[byte_count]) & 0xff;
-  byte_count++;  // to address
-  packet_tx[byte_count] = local_address;
-  LRC = (LRC + packet_tx[byte_count]) & 0xff;
-  byte_count++;  // from address
-  packet_tx[byte_count] = payload_len;
-  LRC = (LRC + packet_tx[byte_count]) & 0xff;
-  byte_count++;  // data length
-  // populate payload
-  for (int i = 0; i < payload_len; i++) {
-    packet_tx[byte_count] = payload[i];
-    LRC = (LRC + packet_tx[byte_count]) & 0xff;
-    byte_count++;
+uint8_t NullPacketComms::writePacket(uint8_t target, uint8_t data[],
+                                     uint8_t data_len) {
+  if (data_len > 58) return 0;      // Packet can't exceed 64 bytes.
+  uint8_t byte_count = 0;           // Record bytes sent in packet
+  byte_count += Serial.write('>');  // Send start packet symbol
+  uint8_t lrc = 0;                  // Compute LRC byte
+  byte_count += Serial.write(0);    // Always communicating with host.
+  byte_count += Serial.write(target);
+  lrc = (lrc + target) & 0xff;
+  byte_count += Serial.write(data_len);
+  lrc = (lrc + data_len) & 0xff;
+  for (uint8_t i = 0; i < data_len; i++) {  // Send the payload
+    byte_count += Serial.write(data[i]);
+    lrc = (lrc + data[i]) & 0xff;
   }
-  LRC = ((LRC ^ 0xff) + 1) & 0xff;
-  packet_tx[byte_count] = LRC;
-  byte_count++;  // longitudinal redundancy checksum
-  packet_tx[byte_count] = '<';
-  byte_count++;  // end packet
+  lrc = ((lrc ^ 0xff) + 1) & 0xff;
+  byte_count += Serial.write(lrc);  // Send the checksum
+  byte_count += Serial.write('<');  // Send end packet symbol
   return byte_count;
 }
 
-bool NullPacketComms::return_ack(uint8_t error_code, uint8_t remote_address,
-                                 uint8_t local_address) {
-  uint8_t data[1] = {error_code};
-  uint8_t byte_len =
-      generate_packet_data(data, 1, remote_address, local_address, packet_tx);
-  return send_packet(packet_tx, byte_len);
+bool NullPacketComms::writeAck(uint8_t target, uint8_t ack_code) {
+  uint8_t data[1] = {ack_code};
+  return writePacket(target, data, 1) == 7;  // ACK always 7 bytes
 }
 
-bool NullPacketComms::send_packet(uint8_t packet_tx[], uint8_t packet_len) {
-  uint8_t count_bytes = 0;
-  for (int i = 0; i < packet_len; i++) {
-    count_bytes += Serial.write(packet_tx[i]);
-  }
-  Serial.flush();
-  if (count_bytes != packet_len - 1) {
-    return false;
-  }
-  return true;
+void NullPacketComms::clean() {
+  len_ = 0;
+  target_ = 0;
 }

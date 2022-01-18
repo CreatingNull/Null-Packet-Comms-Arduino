@@ -11,6 +11,7 @@ build/
 bin/
 *.o
 NPCTestSuite
+NullPacketComms
 
 # Ignore doxygen built files
 /docs/doxygen/html/
@@ -18,9 +19,6 @@ NPCTestSuite
 
 # Ignore the test runner
 googletest/
-
-# Ignore the localised source when testing
-tests/NullPacketComms
 
 # PyCharm Projects
 .idea/

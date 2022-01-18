@@ -14,13 +14,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define uint8_t u_int8_t
+#include <queue>
+
+#define uint8_t u_int8_t  // Alias for the arduino naming scheme
 #define uint16_t u_int16_t
 #define uint32_t u_int32_t
 
 class HardwareSerial {
  public:
   HardwareSerial();
+  std::queue<uint8_t> pending_rx_;  // Mocked.
+  std::queue<uint8_t> pending_tx_;  // Mocked.
   void begin(uint32_t baud);
   void end();
   uint8_t available();

@@ -29,7 +29,6 @@ jobs:
 
       - name: Build and Execute Tests
         run: |
-          cp -r src/NullPacketComms/ tests/NullPacketComms/
           cd tests/
           make
-          ./NullPacketComms/NullPacketComms
+          ../src/NullPacketComms/NullPacketComms

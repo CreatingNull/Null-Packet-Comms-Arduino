@@ -19,4 +19,4 @@ repos:
     -   id: cpplint
         args: [--root=src/NullPacketComms/]
     -   id: cppcheck
-        args: [--language=c++]
+        args: [--language=c++, --library=googletest]

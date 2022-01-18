@@ -10,17 +10,27 @@
 
 #include "Arduino.h"
 
-HardwareSerial::HardwareSerial() { return; }
+HardwareSerial::HardwareSerial() : pending_rx_(), pending_tx_() {}
 
 void HardwareSerial::begin(uint32_t baud) { return; }
 
 void HardwareSerial::end() { return; }
 
-uint8_t HardwareSerial::available() { return 0; }
+uint8_t HardwareSerial::available() { return pending_rx_.size(); }
 
-uint8_t HardwareSerial::read() { return 0; }
+uint8_t HardwareSerial::read() {
+  if (available() > 0) {
+    uint8_t data = pending_rx_.front();
+    pending_rx_.pop();
+    return data;
+  }
+  return 0;
+}
 
-uint8_t HardwareSerial::write(uint8_t data) { return 0; }
+uint8_t HardwareSerial::write(uint8_t data) {
+  pending_tx_.push(data);
+  return 1;
+}
 
 void HardwareSerial::flush() { return; }
 
