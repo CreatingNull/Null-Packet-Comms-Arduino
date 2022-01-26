@@ -12,14 +12,12 @@ NullPacketComms	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-init_port	KEYWORD2
-read_packet	KEYWORD2
-process_packet	KEYWORD2
-flush_rx_buffer	KEYWORD2
-close_port	KEYWORD2
-return_ack	KEYWORD2
-generate_packet_data	KEYWORD2
-send_packet	KEYWORD2
+begin	KEYWORD2
+end	KEYWORD2
+available	KEYWORD2
+readPacket	KEYWORD2
+writePacket	KEYWORD2
+writeAck	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
