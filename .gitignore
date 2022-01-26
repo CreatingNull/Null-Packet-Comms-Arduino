@@ -6,11 +6,9 @@ logs/
 *.db
 
 # Ignore built / packaged code
-dist/
 build/
 bin/
 *.o
-NPCTestSuite
 NullPacketComms
 
 # Ignore doxygen built files

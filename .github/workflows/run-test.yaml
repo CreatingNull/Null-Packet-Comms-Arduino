@@ -31,4 +31,4 @@ jobs:
         run: |
           cd tests/
           make
-          ../src/NullPacketComms/NullPacketComms
+          ../src/NullPacketComms

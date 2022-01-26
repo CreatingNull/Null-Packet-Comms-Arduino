@@ -17,6 +17,6 @@ repos:
     -   id: clang-format
         args: [-i, --style=Google]
     -   id: cpplint
-        args: [--root=src/NullPacketComms/]
+        args: [--root=src/]
     -   id: cppcheck
         args: [--language=c++, --library=googletest]
