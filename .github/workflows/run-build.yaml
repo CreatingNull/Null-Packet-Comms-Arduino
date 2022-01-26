@@ -17,15 +17,18 @@ jobs:
 
       - name: Localise artifacts
         run: |
-          cp README.md src/
-          cp LICENSE.md src/
-          cp keywords.txt src/
-          cp library.properties src/
+          mkdir NullPacketComms/
+          cp README.md NullPacketComms/
+          cp LICENSE.md NullPacketComms/
+          cp keywords.txt NullPacketComms/
+          cp library.properties NullPacketComms/
+          cp src/NullPacketComms.cpp NullPacketComms/
+          cp src/NullPacketComms.h NullPacketComms/
 
       - name: Create zip of artifacts
         uses: edgarrc/action-7z@v1.0.5
         with:
-          args: 7z a -y -tzip -mx9 NullPacketComms.zip ./src/
+          args: 7z a -y -tzip -mx9 NullPacketComms.zip ./NullPacketComms/
 
       - name: Upload the Build
         uses: actions/upload-artifact@v2
