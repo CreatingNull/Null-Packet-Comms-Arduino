@@ -61,7 +61,7 @@ bool NullPacketComms::readPacket(bool manual_ack) {
     } else if (cursor == 3) {
       len_ = inward;  // Set the pending packet length.
       lrc = (lrc + inward) & 0xff;
-    } else if (cursor >= 4 && cursor <= 3 + len_) {  // Payload.
+    } else if (cursor < 4 + len_) {  // Payload.
       payload_[cursor - 4] = inward;
       lrc = (lrc + inward) & 0xff;
     } else if (cursor == 4 + len_) {  // Checksum.
