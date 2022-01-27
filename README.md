@@ -10,7 +10,7 @@
 This is an arduino library that implements a binary packet-based communication protocol on top of the arduino Serial library.
 This wrapper allows for robust generic data transfer between systems, it is heavily relied on for the [Arduino UOS](https://github.com/CreatingNull/UOS-Arduino) implementation.
 
-For more information on NPC and its uses please see the [protocol documentation](https://wiki.nulltek.xyz/protocols/npc/).
+For more information on the NPC protocol and its uses please see the [protocol documentation](https://wiki.nulltek.xyz/protocols/npc/).
 
 ---
 
