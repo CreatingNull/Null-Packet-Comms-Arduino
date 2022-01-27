@@ -16,7 +16,7 @@
 #include <Arduino.h>
 
 /*!
-        Serial connection object to handled via NPC protocol.
+        Serial connection object to be handled via NPC protocol.
 */
 class NullPacketComms {
  public:
@@ -33,7 +33,7 @@ class NullPacketComms {
   /*! Opens the connection to the UART port.
 
         \param baud_rate Standard UART baud rate to use.
-        \return `true` if opened `false` if unsupported baud.
+        \return `true` if opened, `false` if unsupported baud.
   */
   bool begin(uint32_t baud_rate);
 
@@ -54,7 +54,7 @@ class NullPacketComms {
   */
   bool readPacket(bool manual_ack = false);
 
-  /*! Builds a data packet and sends it to the host system
+  /*! Builds a data packet and sends it to the host system.
 
         \param target Of the system to respond to.
         \param data Payload array to populate into the packet.
@@ -63,11 +63,11 @@ class NullPacketComms {
   */
   uint8_t writePacket(uint8_t target, uint8_t data[], uint8_t data_len);
 
-  /*! Sends an ack packet in response to a resolved rx packet
+  /*! Sends an ack packet in response to a resolved rx packet.
 
-        \param target address of system we are responding from.
+        \param target Address of system we are responding from.
         \param ack_code NACK error code or `0` for ACK.
-        \return `true` if ack was sent successfully else `false`.
+        \return `true` if ack was sent successfully, else `false`.
   */
   bool writeAck(uint8_t target, uint8_t ack_code);
 
