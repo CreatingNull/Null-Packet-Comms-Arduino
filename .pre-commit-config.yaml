@@ -16,12 +16,13 @@ repos:
     hooks:
     -   id: clang-format
         args: [-i, --style=Google]
-    -   id: cpplint
-        args: [--root=src/]
-        additional_dependencies:
-            - cpplint
     -   id: cppcheck
         args: [--language=c++, --library=googletest]
+-   repo: https://github.com/cpplint/cpplint
+    rev: 1.5.5
+    hooks:
+    -   id: cpplint
+        args: [--root=src]
 -   repo: https://github.com/CreatingNull/arduino-hooks
     # Note for the pre-commit GitHub workflow this executable must be added.
     rev: v0.1.0
