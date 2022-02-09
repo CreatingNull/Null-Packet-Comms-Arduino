@@ -18,5 +18,13 @@ repos:
         args: [-i, --style=Google]
     -   id: cpplint
         args: [--root=src/]
+        additional_dependencies:
+            - cpplint
     -   id: cppcheck
         args: [--language=c++, --library=googletest]
+-   repo: https://github.com/CreatingNull/Pre-Commit-Arduino
+    # Note for the pre-commit GitHub workflow this executable must be added.
+    rev: v0.1.1
+    hooks:
+    -   id: arduino-lint
+        args: [--fail-on-warn]
