@@ -23,7 +23,7 @@ Packaged releases of the library can be obtained as zip files from the repositor
 
 The source code is written in C++ and contained within the `src/` subdir.
 Most of the code is formatted to clang specifications, however this is automated via the [pre-commit](https://github.com/pre-commit/pre-commit) framework, see repo [hooks](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/master/.pre-commit-config.yaml).
-The hook's `LLVM`, `cppcheck` and '' dependencies should be installed for the OS, as well as those defined in [development-requirements](resources/development-requirements.txt) to correctly execute the pre-commit tasks.
+The hook's `arduino-lint` dependencies should be installed for the OS, to correctly execute the pre-commit tasks.
 
 The pre-commit action is currently automated by GitHub actions CI, to verify against pushes and pull-requests.
 

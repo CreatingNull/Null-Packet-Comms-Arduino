@@ -14,8 +14,6 @@ repos:
 -   repo: https://github.com/pocc/pre-commit-hooks
     rev: v1.3.5
     hooks:
-    -   id: clang-format
-        args: [-i, --style=Google]
     -   id: cppcheck
         args: [--language=c++, --library=googletest]
 -   repo: https://github.com/cpplint/cpplint
@@ -23,6 +21,11 @@ repos:
     hooks:
     -   id: cpplint
         args: [--root=src]
+-   repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v13.0.0
+    hooks:
+    -   id: clang-format
+        args: [-i, --style=Google]
 -   repo: https://github.com/CreatingNull/arduino-hooks
     # Note for the pre-commit GitHub workflow this executable must be added.
     rev: v0.1.0
