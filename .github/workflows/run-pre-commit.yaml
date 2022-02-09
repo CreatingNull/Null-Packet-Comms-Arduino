@@ -19,14 +19,16 @@ jobs:
       uses: KyleMayes/install-llvm-action@v1.5.0
       with:
         version: "13.0"
+        directory: ${{ runner.temp }}/llvm
 
     - name: Install Python
       uses: actions/setup-python@v2
 
     - name: Install System Dependancies
       run: |
-        pip install --upgrade pip wheel cpplint
+        pip install --upgrade pip wheel
         sudo apt-get update -y
+        sudo apt-get install -y cppcheck
         curl -fsSL https://raw.githubusercontent.com/arduino/arduino-lint/main/etc/install.sh | sh -s 1.2.0
         echo "${PWD}/bin/" >> $GITHUB_PATH
 
