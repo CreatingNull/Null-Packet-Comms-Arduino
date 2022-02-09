@@ -22,9 +22,9 @@ repos:
             - cpplint
     -   id: cppcheck
         args: [--language=c++, --library=googletest]
--   repo: https://github.com/CreatingNull/Pre-Commit-Arduino
+-   repo: https://github.com/CreatingNull/arduino-hooks
     # Note for the pre-commit GitHub workflow this executable must be added.
-    rev: v0.1.1
+    rev: v0.1.0
     hooks:
     -   id: arduino-lint
         args: [--fail-on-warn]
