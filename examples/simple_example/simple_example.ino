@@ -39,7 +39,7 @@ void loop() {
         accumulator -= com.payload_[0];
       if (com.target_ == 12) {  // return accumulator
         // Split accumulator into its bytes to return as little endian
-        uint8t payload[2] = {highByte(accumulator), lowByte(accumulator)};
+        uint8_t payload[2] = {highByte(accumulator), lowByte(accumulator)};
         // Respond with the current value to the query packet address
         com.writePacket(com.target_, payload, sizeof(payload));
       }
