@@ -3,7 +3,11 @@ name: build
 on:
 
   push:
-    branches: [master]
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
 
 jobs:
 
