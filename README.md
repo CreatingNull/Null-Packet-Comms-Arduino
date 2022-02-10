@@ -1,7 +1,7 @@
 # ![NullTek Documentation](https://raw.githubusercontent.com/CreatingNull/NullTek-Assets/main/img/logo/NullTekDocumentationLogo.png) Arduino Null Packet Comms
 
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/master/LICENSE.md)
-[![Codacy grade](https://img.shields.io/codacy/grade/ec4a482e4a4f4fbdb0ddb0a268916f23?logo=codacy&style=flat-square&label=quality)](https://app.codacy.com/gh/CreatingNull/Null-Packet-Comms-Arduino/dashboard?branch=master)
+[![Codacy grade](https://img.shields.io/codacy/grade/ec4a482e4a4f4fbdb0ddb0a268916f23?logo=codacy&style=flat-square&label=quality)](https://app.codacy.com/gh/CreatingNull/Null-Packet-Comms-Arduino/dashboard?branch=main)
 [![Pre-commit](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/pre-commit?logo=pre-commit&style=flat-square&label=linting)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-pre-commit.yaml)
 [![Read the Docs](https://img.shields.io/readthedocs/null-packet-comms-arduino?style=flat-square&logo=readthedocs)](https://null-packet-comms-arduino.nulltek.xyz)
 [![Test](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/test?logo=github&style=flat-square&label=tests)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-test.yaml)
