@@ -15,13 +15,13 @@
 #include "NullPacketComms.h"
 
 // Create a global com wrapper
-NullPacketComms Com = NullPacketComms();
+NullPacketComms com = NullPacketComms();
 int accumulator = 0;
 
 void setup() {
   // 0 our accumulator
   // Open the UART connection
-  Com.begin(9600);
+  com.begin(9600);
   // To use the UART for other purposes during execution.
   // You may chose to begin in the loop
   // and end when appropriate.
