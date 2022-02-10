@@ -13,3 +13,9 @@ updates:
     directory: "/resources"
     schedule:
       interval: "daily"
+
+  # Maintain the documentation dependencies as well
+  - package-ecosystem: "pip"
+    directory: "/docs"
+    schedule:
+      interval: "daily"
