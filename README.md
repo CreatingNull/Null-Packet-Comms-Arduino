@@ -17,10 +17,29 @@ For more information on the NPC protocol and its uses please see the [protocol d
 ## Getting Started
 
 This project is stand-alone and the only requirement is for it to be used in arduino projects.
+
+### Installation
+
 The recommended method to use this library is downloading the latest registry stable release using the Arduino Library Manager.
 
 Pre-packed zipped versions of the latest builds can also be obtained from the GitHub build artifacts.
 Alternatively, you could manually pack the source and add this via the arduino IDE, see their [instructions](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries).
+
+### Usage
+
+This library handles communicating and verifying data between the `primary` and `remote` device, what you do with that data is up to you.
+In the [simple_example](examples/simple_example/simple_example.ino) sketch, we implement a simple accumulating calculator on the arduino that can handle addition or subtraction operations.
+
+This example sets the:
+
+* `target_` - Target address is used to define the operation.
+  * 10 - Perform an addition operation
+  * 11 - Perform a subtraction operation
+  * 12 - Return the current accumulator value as a signed 16-bit integer.
+* `payload` - 1 byte unsigned integer to add or subtract.
+
+Using a `NPC` connection in this manner is implemented in a similar manner to if you were using raw UART, however instead of using manual `read` and `write` commands we use `readPacket` and `writePacket`.
+The benefit is that we get a closed loop communication where commands are acknowledged, checksums are verified and both the `primary` and the `remote` have some confidence in what is being sent and received.
 
 ### Source Structure
 
