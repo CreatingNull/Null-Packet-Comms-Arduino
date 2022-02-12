@@ -17,15 +17,23 @@ For more information on the NPC protocol and its uses please see the [protocol d
 ## Getting Started
 
 This project is stand-alone and the only requirement is for it to be used in arduino projects.
-Packaged releases of the library can be obtained as zip files from the repository tags, the library can then be installed using the arduino library manager, see their [instructions](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries).
+The recommended method to use this library is downloading the latest registry stable release using the Arduino Library Manager.
+
+Pre-packed zipped versions of the latest builds can also be obtained from the GitHub build artifacts.
+Alternatively, you could manually pack the source and add this via the arduino IDE, see their [instructions](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries).
 
 ### Source Structure
 
 The source code is written in C++ and contained within the `src/` subdir.
-Most of the code is formatted to clang specifications, however this is automated via the [pre-commit](https://github.com/pre-commit/pre-commit) framework, see repo [hooks](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/master/.pre-commit-config.yaml).
+The source code is formatted using `clang-format` specifications, however this is automated via the [pre-commit](https://github.com/pre-commit/pre-commit) framework, see repo [hooks](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/master/.pre-commit-config.yaml).
 The hook's `arduino-lint` dependencies should be installed for the OS, to correctly execute the pre-commit tasks.
 
 The pre-commit action is currently automated by GitHub actions CI, to verify against pushes and pull-requests.
+
+### Testing
+
+The repo includes a test suite built using [googletest](https://github.com/google/googletest) to verify API functionality.
+This uses a simple mocked `Arduino.h` [shim](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/main/tests/Arduino.cpp) to 'simulate' hardware response.
 
 ## Donations
 
