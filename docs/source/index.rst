@@ -8,17 +8,9 @@ This wrapper allows for robust generic data transfer between systems, it is heav
 
 The library exposes a class which is designed to mimic the Serial API, but using formatted packets.
 
-.. doxygenclass:: NullPacketComms
-   :members:
-
 .. toctree::
-   :maxdepth: 4
-   :caption: Contents:
+   :maxdepth: 2
+   :caption: Documentation:
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   api
+   changes
