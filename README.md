@@ -32,11 +32,11 @@ In the [simple_example](examples/simple_example/simple_example.ino) sketch, we i
 
 This example sets the:
 
-* `target_` - Target address is used to define the operation.
-  * 10 - Perform an addition operation
-  * 11 - Perform a subtraction operation
-  * 12 - Return the current accumulator value as a signed 16-bit integer.
-* `payload` - 1 byte unsigned integer to add or subtract.
+  * `target_` - Target address is used to define the operation.
+    * 10 - Perform an addition operation
+    * 11 - Perform a subtraction operation
+    * 12 - Return the current accumulator value as a signed 16-bit integer.
+  * `payload` - 1 byte unsigned integer to add or subtract.
 
 Using a `NPC` connection in this manner is implemented in a similar manner to if you were using raw UART, however instead of using manual `read` and `write` commands we use `readPacket` and `writePacket`.
 The benefit is that we get a closed loop communication where commands are acknowledged, checksums are verified and both the `primary` and the `remote` have some confidence in what is being sent and received.
