@@ -1,4 +1,4 @@
-.. UOS Interface documentation master file.
+.. NPC Arduino documentation master file.
 
 Null Packet Comms Arduino
 =========================

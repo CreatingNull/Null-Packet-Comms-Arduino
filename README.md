@@ -41,6 +41,8 @@ This example sets the:
 Using a `NPC` connection in this manner is implemented in a similar manner to if you were using raw UART, however instead of using manual `read` and `write` commands we use `readPacket` and `writePacket`.
 The benefit is that we get a closed loop communication where commands are acknowledged, checksums are verified and both the `primary` and the `remote` have some confidence in what is being sent and received.
 
+For more information on the API see the [library documentation](https://null-packet-comms-arduino.nulltek.xyz).
+
 ### Source Structure
 
 The source code is written in C++ and contained within the `src/` subdir.
