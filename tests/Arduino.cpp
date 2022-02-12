@@ -9,6 +9,9 @@
  */
 
 #include "Arduino.h"
+// The following is for importing the sleep function cross platform.
+#include <chrono>  // NOLINT [build/c++11]
+#include <thread>  // NOLINT [build/c++11]
 
 HardwareSerial::HardwareSerial() : pending_rx_(), pending_tx_() {}
 
@@ -36,4 +39,6 @@ void HardwareSerial::flush() { return; }
 
 HardwareSerial Serial = HardwareSerial();
 
-void delay(int micros) { return; }
+void delay(int millis) {
+  std::this_thread::sleep_for(std::chrono::milliseconds(millis));
+}

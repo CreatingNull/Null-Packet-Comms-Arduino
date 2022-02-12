@@ -51,27 +51,41 @@ bool NullPacketComms::readPacket(bool manual_ack) {
   uint8_t cursor = 0;  // For tracking the position in the packet.
   bool lrc_match = false;
   bool end_token = false;
+  // Iterates while packet is being built and more data is coming in.
   while (Serial.available() > 0) {
     uint8_t inward = Serial.read() & 0xff;  // No byte case is a non-issue.
     if (cursor == 0) {                      // Start packet symbol.
-      if (inward != '>') continue;          // Packet not in sync.
-    } else if (cursor <= 2) {               // To, from, and length.
+      if (inward != '>') {                  // Packet not in sync.
+        delay(50);  // Error case blindly allows buffer accumulation.
+        continue;
+      }
+      cursor++;                // Valid byte added to the packet!
+    } else if (cursor <= 2) {  // To, from, and length.
       lrc = (lrc + inward) & 0xff;
       if (cursor == 1) target_ = inward;
+      cursor++;  // Valid byte added to the packet!
     } else if (cursor == 3) {
       len_ = inward;  // Set the pending packet length.
       lrc = (lrc + inward) & 0xff;
+      cursor++;                      // Valid byte added to the packet!
     } else if (cursor < 4 + len_) {  // Payload.
       payload_[cursor - 4] = inward;
       lrc = (lrc + inward) & 0xff;
+      cursor++;                       // Valid byte added to the packet!
     } else if (cursor == 4 + len_) {  // Checksum.
       lrc = ((lrc ^ 0xff) + 1) & 0xff;
       lrc_match = lrc == inward;
+      cursor++;                       // Valid byte added to the packet!
     } else if (cursor == 5 + len_) {  // End packet symbol.
       if (inward == '<') end_token = true;
       break;
     }
-    cursor++;  // Valid byte added to the packet
+    uint8_t local_gap = 0;  // Count the delay from the last byte
+    while (Serial.available() < 1 && local_gap < 4) {
+      // Can't have a byte interval > 100ms or something is wrong
+      delay(25);
+      local_gap++;
+    }
   }
   if (cursor == 0) {
     writeAck(1, 2);  // Start symbol not found

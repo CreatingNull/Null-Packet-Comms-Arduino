@@ -11,6 +11,8 @@
 
 #include <gtest/gtest.h>
 
+#include <chrono>  // NOLINT [build/c++11]
+
 #include "../src/NullPacketComms.h"
 
 namespace {
@@ -74,6 +76,24 @@ TEST(NPCObject, ReadTypicalPacket) {
       ASSERT_EQ(Serial.pending_tx_.front(), 0);
     Serial.pending_tx_.pop();
   }
+}
+
+TEST(NPCObject, ReadPacketTimeout) {
+  NullPacketComms testCom = NullPacketComms();
+  Serial = HardwareSerial();  // Reconstruct
+  // Check read times out after 500ms
+  // Use a partial packet
+  uint8_t data[]{'>', 0x02, 0x40, 0x06, 0x0d, 0x00};
+  for (uint8_t val : data) Serial.pending_rx_.push(val);
+  auto start_time = std::chrono::high_resolution_clock::now();
+  testCom.readPacket();
+  auto end_time = std::chrono::high_resolution_clock::now();
+  int elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    end_time - start_time)
+                    .count();
+  // Should timeout after at least 100ms and at most 125ms.
+  ASSERT_GE(elapsed, 100);
+  ASSERT_LT(elapsed, 120);
 }
 
 TEST(NPCObject, ReadMaxPacket) {
