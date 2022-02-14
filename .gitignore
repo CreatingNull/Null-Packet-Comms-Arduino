@@ -12,8 +12,8 @@ bin/
 NullPacketComms
 
 # Ignore doxygen built files
-/docs/doxygen/html/
-/docs/doxygen/xml/
+.docs/doxygen/html/
+.docs/doxygen/xml/
 
 # Ignore the test runner
 googletest/
@@ -25,9 +25,9 @@ googletest/
 *.code-workspace
 
 # Ignore sphinx build data
-docs/_build/
-docs/_static/
-docs/_templates/
+.docs/_build/
+.docs/_static/
+.docs/_templates/
 
 # Ignore dev virtual enviroment
 .env

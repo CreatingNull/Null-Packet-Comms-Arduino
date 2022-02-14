@@ -7,7 +7,7 @@ version: 2
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
-   configuration: docs/source/conf.py
+   configuration: .docs/source/conf.py
 
 # Build additional formats such as PDF
 formats: all
@@ -15,4 +15,4 @@ formats: all
 # Install the additional requirements for sphinx extensions
 python:
    install:
-      - requirements: docs/requirements.txt
+      - requirements: .docs/requirements.txt
