@@ -31,4 +31,4 @@ repos:
     rev: v0.1.0
     hooks:
     -   id: arduino-lint
-        args: [--fail-on-warn]
+        args: [--fail-on-warn, --library-manager=update]
