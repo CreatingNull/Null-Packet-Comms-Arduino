@@ -7,8 +7,8 @@
  *
  *	Mocked Arduino stub for testing the library.
  */
-#ifndef TESTS_ARDUINO_H_
-#define TESTS_ARDUINO_H_
+#ifndef _TESTS_ARDUINO_H_
+#define _TESTS_ARDUINO_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,4 +37,4 @@ extern HardwareSerial Serial;
 
 void delay(int micros);
 
-#endif  // TESTS_ARDUINO_H_
+#endif  // _TESTS_ARDUINO_H_

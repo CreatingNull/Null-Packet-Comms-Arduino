@@ -34,6 +34,6 @@ jobs:
 
       - name: Build and Execute Tests
         run: |
-          cd tests/
+          cd .tests/
           make
           ../src/NullPacketComms
