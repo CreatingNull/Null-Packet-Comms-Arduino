@@ -7,7 +7,7 @@
  *
  *	A library for wrapping the arduino UART serial
  *	in a binary packet based communication protocol.
- *	See <https://wiki.nulltek.xyz/protocols/npc/>
+ *	See <https://wiki.nulltek.xyz/docs/protocols/npc/>
  */
 
 #include "NullPacketComms.h"
