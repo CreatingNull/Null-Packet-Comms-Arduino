@@ -10,7 +10,7 @@ updates:
 
   # Maintain the dependencies for pip
   - package-ecosystem: "pip"
-    directory: "/resources"
+    directory: "/.resources"
     schedule:
       interval: "daily"
 
