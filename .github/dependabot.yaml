@@ -16,6 +16,6 @@ updates:
 
   # Maintain the documentation dependencies as well
   - package-ecosystem: "pip"
-    directory: "/docs"
+    directory: "/.docs"
     schedule:
       interval: "daily"
