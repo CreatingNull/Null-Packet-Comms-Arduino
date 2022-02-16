@@ -1,2 +1,2 @@
-breathe==4.32.0
+breathe==4.33.1
 sphinx_rtd_theme==1.0.0
