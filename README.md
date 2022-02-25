@@ -23,8 +23,18 @@ This project is stand-alone and the only requirement is for it to be used in ard
 
 The recommended method to use this library is downloading the latest registry stable release using the Arduino Library Manager.
 
+Using the [arduino-cli](https://github.com/arduino/arduino-cli):
+
+```shell
+arduino-cli lib install NullPacketComms
+```
+
+Using the [arduino-ide](https://github.com/arduino/arduino-ide):
+
+![Installing through IDE](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/main/.resources/Install-via-IDE.gif)
+
 Pre-packed zipped versions of the latest builds can also be obtained from the GitHub build artifacts.
-Alternatively, you could manually pack the source and add this via the arduino IDE, see their [instructions](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries).
+Alternatively, you could manually pack the source and add the library manually, see [instructions](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries).
 
 ### Usage
 
