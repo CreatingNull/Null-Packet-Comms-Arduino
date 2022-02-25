@@ -56,7 +56,7 @@ The pre-commit action is currently automated by GitHub actions CI, to verify aga
 ### Testing
 
 The repo includes a test suite built using [googletest](https://github.com/google/googletest) to verify API functionality.
-This uses a simple mocked `Arduino.h` [shim](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/main/tests/Arduino.cpp) to 'simulate' hardware response.
+This uses a simple mocked `Arduino.h` [shim](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/main/.tests/Arduino.cpp) to 'simulate' hardware response.
 
 ## Donations
 
