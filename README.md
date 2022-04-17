@@ -22,7 +22,7 @@ This project is stand-alone and the only requirement is for it to be used in ard
 
 ### Installation
 
-The recommended method to use this library is downloading the latest registry stable release using the Arduino Library Manager.
+The recommended method to use [this library](https://www.arduino.cc/reference/en/libraries/nullpacketcomms/) is downloading the latest stable release from the registry using the Arduino Library Manager.
 
 Using the [arduino-cli](https://github.com/arduino/arduino-cli):
 
