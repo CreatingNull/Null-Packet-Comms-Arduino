@@ -11,7 +11,8 @@
 This is an arduino library that implements a binary packet-based communication protocol on top of the arduino Serial library.
 This wrapper allows for robust generic data transfer between systems, it is heavily relied on for the [Arduino UOS](https://github.com/CreatingNull/UOS-Arduino) implementation.
 
-For more information on the NPC protocol and its uses please see the [protocol documentation](https://wiki.nulltek.xyz/docs/protocols/npc/).
+For details on this implementation and the API, see the [project documentation](https://null-packet-comms-arduino.nulltek.xyz/en/stable/).
+For more information on the NPC protocol and its uses, please see the [protocol documentation](https://wiki.nulltek.xyz/docs/protocols/npc/).
 
 ---
 
