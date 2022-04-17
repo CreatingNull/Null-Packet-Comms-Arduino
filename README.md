@@ -68,6 +68,21 @@ The pre-commit action is currently automated by GitHub actions CI, to verify aga
 The repo includes a test suite built using [googletest](https://github.com/google/googletest) to verify API functionality.
 This uses a simple mocked `Arduino.h` [shim](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/main/.tests/Arduino.cpp) to 'simulate' hardware response.
 
+The test suite is automated via a GitHub action. To run the tests locally, you need to install the googletest framework.
+You'll also need cmake and a c++ compiler on your development machine.
+
+```
+cd .tests/
+git clone --depth 1 --branch release-1.11.0 https://github.com/google/googletest
+cmake CMakeCache.txt
+make
+make install
+cd ..
+source env.sh
+make
+../src/NullPacketComms
+```
+
 ## Donations
 
 I just do this stuff for fun in my spare time, but feel free to:
