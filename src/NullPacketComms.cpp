@@ -111,22 +111,22 @@ bool NullPacketComms::readPacket(bool manual_ack) {
 
 uint8_t NullPacketComms::writePacket(uint8_t target, uint8_t data[],
                                      uint8_t data_len) {
-  if (data_len > 58) return 0;      // Packet can't exceed 64 bytes.
-  uint8_t byte_count = 0;           // Record bytes sent in packet
-  byte_count += Serial.write('>');  // Send start packet symbol
-  uint8_t lrc = 0;                  // Compute LRC byte
-  byte_count += Serial.write(0);    // Always communicating with host.
-  byte_count += Serial.write(target);
+  if (data_len > 58) return 0;               // Packet can't exceed 64 bytes.
+  uint8_t byte_count = 0;                    // Record bytes sent in packet
+  byte_count += Serial.write((uint8_t)'>');  // Send start packet symbol
+  uint8_t lrc = 0;                           // Compute LRC byte
+  byte_count += Serial.write((uint8_t)0);    // Always communicating with host.
+  byte_count += Serial.write((uint8_t)target);
   lrc = (lrc + target) & 0xff;
-  byte_count += Serial.write(data_len);
+  byte_count += Serial.write((uint8_t)data_len);
   lrc = (lrc + data_len) & 0xff;
   for (uint8_t i = 0; i < data_len; i++) {  // Send the payload
-    byte_count += Serial.write(data[i]);
+    byte_count += Serial.write((uint8_t)data[i]);
     lrc = (lrc + data[i]) & 0xff;
   }
   lrc = ((lrc ^ 0xff) + 1) & 0xff;
-  byte_count += Serial.write(lrc);  // Send the checksum
-  byte_count += Serial.write('<');  // Send end packet symbol
+  byte_count += Serial.write((uint8_t)lrc);  // Send the checksum
+  byte_count += Serial.write((uint8_t)'<');  // Send end packet symbol
   return byte_count;
 }
 
