@@ -35,7 +35,7 @@ jobs:
           args: 7z a -y -tzip -mx9 NullPacketComms.zip ./NullPacketComms/
 
       - name: Upload the Build
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: null-packet-comms-artifacts
           path: NullPacketComms.zip
