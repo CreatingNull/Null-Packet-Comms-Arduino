@@ -1,3 +1,11 @@
+Version 0.2.0
+-------------
+
+:Date: TBC
+
+* Adding support for higher baud-rates 128000 to 2000000.
+* Googletest framework updated to 1.12.1.
+
 Version 0.1.2
 -------------
 

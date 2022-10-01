@@ -74,10 +74,11 @@ You'll also need cmake and a c++ compiler on your development machine.
 
 ```
 cd .tests/
-git clone --depth 1 --branch release-1.11.0 https://github.com/google/googletest
+git clone --depth 1 --branch release-1.12.1 https://github.com/google/googletest
+cd googletest/
 cmake CMakeCache.txt
 make
-make install
+sudo make install
 cd ..
 source env.sh
 make
