@@ -74,6 +74,9 @@ class NullPacketComms {
  private:
   /*! Clears the state of the RX fields. */
   void clean();
+
+  /*! Waits on new bytes becoming available. */
+  void waitOnAvailable();
 };
 
 #endif  // NULLPACKETCOMMS_H_

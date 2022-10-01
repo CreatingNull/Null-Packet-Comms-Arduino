@@ -51,6 +51,15 @@ void NullPacketComms::end() { Serial.end(); }
 
 int NullPacketComms::available() { return Serial.available(); }
 
+void NullPacketComms::waitOnAvailable() {
+  uint8_t local_gap = 0;  // Count the delay from the last byte
+  while (Serial.available() < 1 && local_gap < 100) {
+    // Can't have a byte interval > 100ms or something is wrong
+    delay(1);
+    local_gap++;
+  }
+}
+
 bool NullPacketComms::readPacket(bool manual_ack) {
   if (Serial.available() < 1) return false;  // No pending data.
   this->clean();                             // Clears last processed packet.
@@ -63,7 +72,7 @@ bool NullPacketComms::readPacket(bool manual_ack) {
     uint8_t inward = Serial.read() & 0xff;  // No byte case is a non-issue.
     if (cursor == 0) {                      // Start packet symbol.
       if (inward != '>') {                  // Packet not in sync.
-        delay(50);  // Error case blindly allows buffer accumulation.
+        waitOnAvailable();
         continue;
       }
       cursor++;                // Valid byte added to the packet!
@@ -87,11 +96,8 @@ bool NullPacketComms::readPacket(bool manual_ack) {
       if (inward == '<') end_token = true;
       break;
     }
-    uint8_t local_gap = 0;  // Count the delay from the last byte
-    while (Serial.available() < 1 && local_gap < 4) {
-      // Can't have a byte interval > 100ms or something is wrong
-      delay(25);
-      local_gap++;
+    if (available() < 1) {  // allow accumulation if no bytes present.
+      waitOnAvailable();
     }
   }
   if (cursor == 0) {

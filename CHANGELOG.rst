@@ -5,6 +5,10 @@ Version 0.2.0
 
 * Adding support for higher baud-rates 128000 to 2000000.
 * Googletest framework updated to 1.12.1.
+* Added waitOnAvailable private function to allow for dynamic delays pending next bytes.
+* Reduced idle time from 25ms to 1ms while waiting on buffer to accumulate.
+  This improves responsiveness, especially at higher baud rates.
+* Error case for loss of start packet sync set to dynamically delay rather than blindly delay.
 
 Version 0.1.2
 -------------
