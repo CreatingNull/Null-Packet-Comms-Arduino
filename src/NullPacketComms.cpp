@@ -20,6 +20,13 @@ NullPacketComms::NullPacketComms() {
 
 bool NullPacketComms::begin(uint32_t baud_rate) {
   switch (baud_rate) {
+    case 2000000:
+    case 1500000:
+    case 921600:
+    case 460800:
+    case 230400:
+    case 153600:
+    case 128000:
     case 115200:
     case 57600:
     case 38400:
