@@ -4,6 +4,8 @@ Version 0.2.1
 :Date: TBC
 
 * Used ``Serial.available`` calls in preference to the nested ``NullPacketComms.available`` internally.
+* Sourcing doc metadata from ``library.properties``.
+  This fixes a issues from me forgetting to maintain ``conf.py``.
 
 Version 0.2.0
 -------------
@@ -12,7 +14,7 @@ Version 0.2.0
 
 * Adding support for higher baud-rates 128000 to 2000000.
 * Googletest framework updated to 1.12.1.
-* Added waitOnAvailable private function to allow for dynamic delays pending next bytes.
+* Added ``waitOnAvailable`` private function to allow for dynamic delays pending next bytes.
 * Reduced idle time from 25ms to 1ms while waiting on buffer to accumulate.
   This improves responsiveness, especially at higher baud rates.
 * Error case for loss of start packet sync set to dynamically delay rather than blindly delay.

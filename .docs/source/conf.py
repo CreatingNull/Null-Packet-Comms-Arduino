@@ -11,6 +11,7 @@
 import os
 import subprocess
 from re import match
+from configparser import ConfigParser
 
 if os.environ.get('READTHEDOCS', None) == 'True':
     # We are building live docs, doxygen needs to be run first.
@@ -19,10 +20,16 @@ if os.environ.get('READTHEDOCS', None) == 'True':
 
 # -- Project information -----------------------------------------------------
 
+# Load from library.properties
+parser = ConfigParser()
+with open(os.path.abspath("../../library.properties")) as stream:
+    # You can add a dummy section to use config parser for reading this file.
+    parser.read_string("[Arduino]\n" + stream.read())
+
 project = "Null Packet Comms Arduino"
-copyright = "2022, Steve Richardson"
-author = "Steve Richardson"
-__version__ = "0.1.0"
+author = parser["Arduino"]["author"]
+copyright = f"2022, {author}"
+__version__ = parser["Arduino"]["version"]
 
 # The short MAJOR.MINOR version.
 version = match(r"^[\d].[\d]", __version__).group(0)
