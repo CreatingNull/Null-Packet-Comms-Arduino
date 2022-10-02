@@ -1,7 +1,7 @@
 Version 0.2.1
 -------------
 
-:Date: TBC
+:Date: 2-October-2022
 
 * Used ``Serial.available`` calls in preference to the nested ``NullPacketComms.available`` internally.
 * Sourcing doc metadata from ``library.properties``.
