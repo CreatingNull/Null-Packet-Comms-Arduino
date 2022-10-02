@@ -96,7 +96,7 @@ bool NullPacketComms::readPacket(bool manual_ack) {
       if (inward == '<') end_token = true;
       break;
     }
-    if (available() < 1) {  // allow accumulation if no bytes present.
+    if (Serial.available() < 1) {  // allow accumulation if no bytes present.
       waitOnAvailable();
     }
   }

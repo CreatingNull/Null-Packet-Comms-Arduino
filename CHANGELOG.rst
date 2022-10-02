@@ -1,3 +1,10 @@
+Version 0.2.1
+-------------
+
+:Date: TBC
+
+* Used `Serial.available` calls in preference to the nested `NullPacketComms.available` internally.
+
 Version 0.2.0
 -------------
 
