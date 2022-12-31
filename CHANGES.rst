@@ -1,7 +1,7 @@
 Version 0.2.2
 -------------
 
-:Date: TBC
+:Date: 31-December-2022
 
 * Fixing doc shields which inspected github workflows (see: `issue<https://github.com/badges/shields/issues/8671>`_).
 * Defining test data as constant where it is used as a constant.
