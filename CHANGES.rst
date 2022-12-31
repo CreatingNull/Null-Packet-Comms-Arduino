@@ -1,3 +1,10 @@
+Version 0.2.2
+-------------
+
+:Date: TBC
+
+* Fixing doc shields which inspected github workflows (see: `issue<https://github.com/badges/shields/issues/8671>`_).
+
 Version 0.2.1
 -------------
 

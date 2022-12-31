@@ -2,10 +2,10 @@
 
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/blob/master/LICENSE.md)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/creatingnull/null-packet-comms-arduino?style=flat-square&color=orange)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/tags)
-[![Pre-commit](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/pre-commit?logo=pre-commit&style=flat-square&label=linting)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-pre-commit.yaml)
+[![Pre-commit](https://img.shields.io/github/actions/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/run-pre-commit.yaml?branch=main&logo=pre-commit&style=flat-square&label=linting)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-pre-commit.yaml)
 [![Read the Docs](https://img.shields.io/readthedocs/null-packet-comms-arduino?style=flat-square&logo=readthedocs)](https://null-packet-comms-arduino.nulltek.xyz)
-[![Test](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/test?logo=github&style=flat-square&label=tests)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-test.yaml)
-[![Build](https://img.shields.io/github/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/build?logo=github&style=flat-square&label=build)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-build.yaml)
+[![Test](https://img.shields.io/github/actions/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/run-test.yaml?branch=main&logo=github&style=flat-square&label=tests)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-test.yaml)
+[![Build](https://img.shields.io/github/actions/workflow/status/CreatingNull/Null-Packet-Comms-Arduino/run-build.yaml?branch=main&logo=github&style=flat-square&label=build)](https://github.com/CreatingNull/Null-Packet-Comms-Arduino/actions/workflows/run-build.yaml)
 
 This is an arduino library that implements a binary packet-based communication protocol on top of the arduino Serial library.
 This wrapper allows for robust generic data transfer between systems, it is heavily relied on for the [Arduino UOS](https://github.com/CreatingNull/UOS-Arduino) implementation.
