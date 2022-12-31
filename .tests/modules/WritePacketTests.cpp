@@ -79,7 +79,7 @@ TEST(NPCObject, WriteAck) {
   Serial = HardwareSerial();  // Reconstruct
 
   // Check acknowledge packets are generated correctly
-  uint8_t limit[7]{'>', 0, 24, 1, 255, 232, '<'};
+  uint8_t const limit[7]{'>', 0, 24, 1, 255, 232, '<'};
   bool result = testCom.writeAck(24, 255);
   ASSERT_TRUE(result);
   ASSERT_EQ(Serial.pending_tx_.size(), 7);

@@ -44,8 +44,8 @@ TEST(NPCObject, ReadTypicalPacket) {
   NullPacketComms testCom = NullPacketComms();
   Serial = HardwareSerial();  // Reconstruct
 
-  uint8_t data[]{'>',  0x02, 0x40, 0x06, 0x0d, 0x00,
-                 0x01, 0x0c, 0x01, 0x00, 0x9d, '<'};
+  uint8_t const data[]{'>',  0x02, 0x40, 0x06, 0x0d, 0x00,
+                       0x01, 0x0c, 0x01, 0x00, 0x9d, '<'};
   uint8_t limit_payload[]{13, 0, 1, 12, 1, 0};
   uint8_t limit_target = 2;
   for (uint8_t val : data) Serial.pending_rx_.push(val);
@@ -83,7 +83,7 @@ TEST(NPCObject, ReadPacketTimeout) {
   Serial = HardwareSerial();  // Reconstruct
   // Check read times out after 500ms
   // Use a partial packet
-  uint8_t data[]{'>', 0x02, 0x40, 0x06, 0x0d, 0x00};
+  uint8_t const data[]{'>', 0x02, 0x40, 0x06, 0x0d, 0x00};
   for (uint8_t val : data) Serial.pending_rx_.push(val);
   auto start_time = std::chrono::high_resolution_clock::now();
   testCom.readPacket();
@@ -125,7 +125,7 @@ TEST(NPCObject, ReadEmptyPacket) {
   Serial = HardwareSerial();  // Reconstruct
 
   // Check can read a packet with no payload
-  uint8_t data[]{'>', 0, 1, 0, 255, '<'};
+  uint8_t const data[]{'>', 0, 1, 0, 255, '<'};
   for (uint8_t val : data) Serial.pending_rx_.push(val);
 
   bool result = testCom.readPacket(true);
@@ -135,8 +135,8 @@ TEST(NPCObject, ReadEmptyPacket) {
 
 TEST(NPCObject, ReadNoStartSymbol) {
   NullPacketComms testCom = NullPacketComms();
-  Serial = HardwareSerial();     // Reconstruct
-  uint8_t data[]{0, 1, 0, 255};  // Too short
+  Serial = HardwareSerial();           // Reconstruct
+  uint8_t const data[]{0, 1, 0, 255};  // Too short
   for (uint8_t val : data) Serial.pending_rx_.push(val);
   bool result = testCom.readPacket();
   ASSERT_FALSE(result);
@@ -155,7 +155,7 @@ TEST(NPCObject, ReadMalformed) {
   Serial = HardwareSerial();  // Reconstruct
 
   // Check NACK case triggers correctly.
-  uint8_t data[]{'>', 0, 1, 0};  // Too short
+  uint8_t const data[]{'>', 0, 1, 0};  // Too short
   for (uint8_t val : data) Serial.pending_rx_.push(val);
   bool result = testCom.readPacket();
   ASSERT_FALSE(result);
@@ -174,8 +174,8 @@ TEST(NPCObject, ReadLrcMismatch) {
   Serial = HardwareSerial();  // Reconstruct
 
   // Check NACK case triggers correctly.
-  uint8_t data[]{'>',  0x02, 0x40, 0x06, 0x0d, 0x00,
-                 0x01, 0x0c, 0x01, 0x00, 0x9f, '<'};
+  uint8_t const data[]{'>',  0x02, 0x40, 0x06, 0x0d, 0x00,
+                       0x01, 0x0c, 0x01, 0x00, 0x9f, '<'};
   for (uint8_t val : data) Serial.pending_rx_.push(val);
   bool result = testCom.readPacket();
   ASSERT_FALSE(result);
@@ -194,8 +194,8 @@ TEST(NPCObject, ReadNoEndSymbol) {
   Serial = HardwareSerial();  // Reconstruct
 
   // Check NACK case triggers correctly.
-  uint8_t data[]{'>',  0x02, 0x40, 0x06, 0x0d, 0x00,
-                 0x01, 0x0c, 0x01, 0x00, 0x9d};
+  uint8_t const data[]{'>',  0x02, 0x40, 0x06, 0x0d, 0x00,
+                       0x01, 0x0c, 0x01, 0x00, 0x9d};
   for (uint8_t val : data) Serial.pending_rx_.push(val);
   bool result = testCom.readPacket();
   ASSERT_FALSE(result);
