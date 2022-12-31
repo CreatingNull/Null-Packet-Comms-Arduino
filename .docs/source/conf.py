@@ -28,7 +28,7 @@ with open(os.path.abspath("../../library.properties")) as stream:
 
 project = "Null Packet Comms Arduino"
 author = parser["Arduino"]["author"]
-copyright = f"2022, {author}"
+copyright = f"2023, {author}"
 __version__ = parser["Arduino"]["version"]
 
 # The short MAJOR.MINOR version.

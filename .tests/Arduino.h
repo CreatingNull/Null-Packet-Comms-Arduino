@@ -1,7 +1,7 @@
 /*
  *	Null Packet Comms Arduino Library Tests
  *
- *	Copyright © 2022 Steve Richardson (Creating Null)
+ *	Copyright © 2023 Steve Richardson (Creating Null)
  *	See LICENSE.md
  *	<https://github.com/CreatingNull/Null-Packet-Comms-Arduino/>
  *
