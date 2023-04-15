@@ -73,7 +73,7 @@ You'll also need cmake and a c++ compiler on your development machine.
 
 ```
 cd .tests/
-git clone --depth 1 --branch release-1.13.0 https://github.com/google/googletest
+git clone --depth 1 --branch v1.13.0 https://github.com/google/googletest
 cd googletest/
 cmake CMakeCache.txt
 make
