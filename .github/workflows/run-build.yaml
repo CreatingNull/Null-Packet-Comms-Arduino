@@ -35,6 +35,8 @@ jobs:
           args: 7z a -y -tzip -mx9 NullPacketComms.zip ./NullPacketComms/
 
       -  name: Check Build on Example Compiles
+         env:
+           ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL: true
          run: |
            curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.32.2
            bin/arduino-cli core update-index
