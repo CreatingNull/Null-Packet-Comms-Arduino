@@ -34,6 +34,14 @@ jobs:
         with:
           args: 7z a -y -tzip -mx9 NullPacketComms.zip ./NullPacketComms/
 
+      -  name: Check Build on Example Compiles
+         run: |
+           curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh -s 0.32.2
+           bin/arduino-cli core update-index
+           bin/arduino-cli core install arduino:avr
+           bin/arduino-cli lib install --zip-path NullPacketComms.zip
+           bin/arduino-cli --fqbn arduino:avr:nano compile examples/simple_example.ino
+
       - name: Upload the Build
         uses: actions/upload-artifact@v3
         with:
