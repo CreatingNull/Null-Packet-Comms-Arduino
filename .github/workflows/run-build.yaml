@@ -42,7 +42,7 @@ jobs:
            bin/arduino-cli core update-index
            bin/arduino-cli core install arduino:avr
            bin/arduino-cli lib install --zip-path NullPacketComms.zip
-           bin/arduino-cli --fqbn arduino:avr:nano compile examples/simple_example.ino
+           bin/arduino-cli --fqbn arduino:avr:nano compile examples/simple_example/
 
       - name: Upload the Build
         uses: actions/upload-artifact@v3
