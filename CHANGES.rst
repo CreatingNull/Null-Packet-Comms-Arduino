@@ -1,9 +1,17 @@
+Version 0.2.3
+-------------
+
+:Date: TBC
+
+* Googletest framework updated to 1.13.0
+* Correcting incorrect syntax used for rst external hyperlink in docs.
+
 Version 0.2.2
 -------------
 
 :Date: 31-December-2022
 
-* Fixing doc shields which inspected github workflows (see: `issue<https://github.com/badges/shields/issues/8671>`_).
+* Fixing doc shields which inspected github workflows (see: `issue <https://github.com/badges/shields/issues/8671>`_).
 * Defining test data as constant where it is used as a constant.
 
 Version 0.2.1
