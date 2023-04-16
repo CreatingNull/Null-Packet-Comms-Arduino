@@ -13,6 +13,14 @@ repos:
     -   id: check-case-conflict
     -   id: requirements-txt-fixer
 
+# Lint restructured text documentation.
+-   repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+    -   id: rst-backticks
+    -   id: rst-directive-colons
+    -   id: rst-inline-touching-normal
+
 # CPPCheck is a useful static linter for detecting bugs.
 -   repo: https://github.com/pocc/pre-commit-hooks
     rev: v1.3.5
