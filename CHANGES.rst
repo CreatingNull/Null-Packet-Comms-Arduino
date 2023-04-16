@@ -1,7 +1,7 @@
 Version 0.2.3
 -------------
 
-:Date: TBC
+:Date: 16-April-2023
 
 * Googletest framework updated to 1.13.0
 * Correcting incorrect syntax used for rst external hyperlink in docs.
